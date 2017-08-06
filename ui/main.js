@@ -11,6 +11,6 @@ button.onclick = function(){
             }
         }
     };
-    request.open('GET', "http://akshaykochar.imad.hasura.io/counter", true);
+    request.open('GET', "http://akshaykochar.imad.hasura-app.io//counter", true);
     request.send(null);
 };
