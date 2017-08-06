@@ -1,8 +1,5 @@
 console.log('Loaded!');
 
-var element = document.getElementById("main-text");
-element.innerHTML = 'This is Awesome!\n\nAWESOME';
-
 var img = document.getElementById('modi');
 var margin_left = 0 ;
 function moveRight(){
