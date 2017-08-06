@@ -5,6 +5,75 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+
+var article_one = {
+    title: 'Article One by Akshay Kochar',
+    heading: 'Article One',
+    date: 'August 6 2017',
+    content: `
+            <p>
+                This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.
+            </p>
+            <p>
+                This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.
+            </p>
+            <p>
+                This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.
+            </p>
+    `
+};
+var article_two = {
+    title: 'Article Two by Akshay Kochar',
+    heading: ' Article Two',
+    date: 'August 6 2017',
+    content: `
+            This is my Second Blog.
+    `
+};
+var article_three = {
+    title: 'Article Three by Akshay Kochar',
+    heading: ' Article Three',
+    date: 'August 6 2017',
+    content: `
+            This is my Third Blog.
+    `
+};
+
+function create_article(data){
+    var title = data.title ;
+    var date = data.date ;
+    var heading = data.heading ;
+    var content = data.content;
+    var htlm_template = `
+    <html>
+    <head>
+        <title>
+            ${title}
+        </title>
+        <meta name='viewport' content='width=device-width initial-scale=1'/>
+        <link href="/ui/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container">
+            <div>
+                <a href="/">Home</a>
+            </div>
+            <hr/>
+            <h3>
+                ${heading}
+            </h3>
+            <div>
+                ${date}
+            </div>
+            <div>
+               ${content}
+            </div>
+        </div>
+    </body>
+</html>
+    `;
+}
+
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
@@ -18,7 +87,7 @@ app.get('/ui/madi.png', function (req, res) {
 });
 
 app.get('/article-one', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
+  res.send(create_article(article_one));
 });
 
 app.get('/article-two', function (req, res) {
