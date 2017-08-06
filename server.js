@@ -5,38 +5,43 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-
-var article_one = {
-    title: 'Article One by Akshay Kochar',
-    heading: 'Article One',
-    date: 'August 6 2017',
-    content: `
-            <p>
-                This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.
-            </p>
-            <p>
-                This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.
-            </p>
-            <p>
-                This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.
-            </p>
-    `
-};
-var article_two = {
-    title: 'Article Two by Akshay Kochar',
-    heading: ' Article Two',
-    date: 'August 6 2017',
-    content: `
-            This is my Second Blog.
-    `
-};
-var article_three = {
-    title: 'Article Three by Akshay Kochar',
-    heading: ' Article Three',
-    date: 'August 6 2017',
-    content: `
-            This is my Third Blog.
-    `
+var articles = {
+    'article-one': {
+        title: 'Article One by Akshay Kochar',
+        heading: 'Article One',
+        date: 'August 6 2017',
+        content: `
+                <p>
+                    This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.
+                </p>
+                <p>
+                    This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.
+                </p>
+                <p>
+                    This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.This is my First Blog.
+                </p>
+        `
+    },
+    'article-two': {
+        title: 'Article Two by Akshay Kochar',
+        heading: ' Article Two',
+        date: 'August 6 2017',
+        content: `
+                <p>
+                This is my Second Blog.
+                </p>
+        `
+    },
+    'article-three': {
+        title: 'Article Three by Akshay Kochar',
+        heading: ' Article Three',
+        date: 'August 6 2017',
+        content: `
+                <p>
+                This is my Third Blog.
+                </p>
+        `
+    }
 };
 
 function create_article(data){
@@ -87,16 +92,9 @@ app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
 
-app.get('/article-one', function (req, res) {
-  res.send(create_article(article_one));
-});
-
-app.get('/article-two', function (req, res) {
-  res.send(create_article(article_two));
-});
-
-app.get('/article-three', function (req, res) {
-  res.send(create_article(article_three));
+app.get('/:articleName', function (req, res) {
+  var articleName = req.params.articleName;
+  res.send(create_article(articles[articleName]));
 });
 
 // Do not change port, otherwise your app won't run on IMAD servers
