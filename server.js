@@ -44,7 +44,7 @@ function create_article(data){
     var date = data.date ;
     var heading = data.heading ;
     var content = data.content;
-    var htlm_template = `
+    var html_template = `
     <html>
         <head>
             <title>
