@@ -22,11 +22,11 @@ app.get('/article-one', function (req, res) {
 });
 
 app.get('/article-two', function (req, res) {
-  res.send('Article One will be served here');
+  res.send('Article Two will be served here');
 });
 
 app.get('/article-three', function (req, res) {
-  res.send('Article One will be served here');
+  res.send('Article Three will be served here');
 });
 
 // Do not change port, otherwise your app won't run on IMAD servers
